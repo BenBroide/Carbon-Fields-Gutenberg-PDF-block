@@ -26,7 +26,6 @@ function crb_attach_theme_options() {
 
 		     ?>
              <div class="wp-block-file">
-             <ul>
                  <?php
                  foreach ( $files['files'] as $file ){
                      $file_url = wp_get_attachment_url( $file['file'] );
@@ -39,10 +38,10 @@ function crb_attach_theme_options() {
                          <a href="<?php echo $file_url ?>" class="wp-block-file__button">View</a>
                          <a href="<?php echo $file_url ?>" class="wp-block-file__button" download="">Download</a>
                      </div>
+                     <hr>
                      <?php
                  }
                  ?>
-             </ul>
              </div>
 		     <?php
 	     });
