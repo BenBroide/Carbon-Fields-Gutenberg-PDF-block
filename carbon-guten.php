@@ -18,7 +18,6 @@ function crb_attach_theme_options() {
 	Block::make( 'PDF' )
 	     ->add_fields( [
 		     Field::make( 'complex', 'files', 'Files' )
-		          ->set_layout( 'tabbed-horizontal' )
 		          ->add_fields( array(
 			          Field::make( 'file', 'file', 'file' )
 		          ) ),
@@ -30,13 +29,16 @@ function crb_attach_theme_options() {
              <ul>
                  <?php
                  foreach ( $files['files'] as $file ){
-                     $file_url = get_attached_file( $file['file'] );
+                     $file_url = wp_get_attachment_url( $file['file'] );
                      $file_thumb = wp_get_attachment_thumb_url( $file['file'] );
                      ?>
-                     <img style="max-width:800px" src="<?php echo $file_thumb ?>">
-                     <span><?php echo get_the_title( $file['file'] ) ?></span>
-                     <a href="<?php echo $file_url ?>" class="wp-block-file__button" download="">Download</a>
+                     <div>
+                         <img style="max-width:800px" src="<?php echo $file_thumb ?>">
+                         <span><?php echo get_the_title( $file['file'] ) ?></span>
 
+                         <a href="<?php echo $file_url ?>" class="wp-block-file__button">View</a>
+                         <a href="<?php echo $file_url ?>" class="wp-block-file__button" download="">Download</a>
+                     </div>
                      <?php
                  }
                  ?>
